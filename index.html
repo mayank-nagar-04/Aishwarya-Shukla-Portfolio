@@ -39,6 +39,11 @@
             padding: 10px 30px;
             border: 2px solid var(--primary-color);
             transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
         .btn-purple:hover {
             background-color: #7e22ce;
@@ -53,10 +58,19 @@
             padding: 10px 30px;
             background: transparent;
             transition: all 0.3s;
+            text-decoration: none;
         }
         .btn-outline-purple:hover {
             background-color: #f3e8ff;
             color: var(--primary-color);
+        }
+
+        /* File Upload Styling */
+        .file-upload-label {
+            cursor: pointer;
+        }
+        #hidden-file-upload {
+            display: none;
         }
 
         /* 1. Typing Animation (Pure CSS) */
@@ -349,9 +363,11 @@
                     </p>
                     <div class="d-flex gap-3 justify-content-center justify-content-md-start">
                         <a href="#contact" class="btn btn-purple">Hire Me</a>
-                        <a href="#" class="btn btn-outline-purple d-flex align-items-center gap-2">
+                        <!-- UPDATED: Functional Resume Download Link -->
+                        <!-- IMPORTANT: Ensure a file named 'resume.pdf' exists in your root folder -->
+                        <a href="Resume Aishwarya.pdf" download="Aishwarya_Resume.pdf" class="btn btn-outline-purple d-flex align-items-center gap-2">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                            Resume
+                            Download Resume
                         </a>
                     </div>
                 </div>
@@ -624,10 +640,19 @@
                         <h3 class="fw-bold mb-4">Ready to start a project?</h3>
                         <p class="mb-5 opacity-75">Feel free to reach out for collaborations or just a friendly hello.</p>
                         
-                        <a href="mailto:aishwaryaharris16@icloud.com" class="btn btn-light rounded-pill px-5 py-3 fw-bold text-primary shadow d-inline-flex align-items-center gap-2">
-                             <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                             Send Email
-                        </a>
+                        <div class="d-flex flex-wrap justify-content-center gap-3">
+                            <a href="mailto:aishwaryaharris16@icloud.com" class="btn btn-light rounded-pill px-5 py-3 fw-bold text-primary shadow d-inline-flex align-items-center gap-2">
+                                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                Send Email
+                            </a>
+
+                            <!-- UPDATED: File Upload Button (Pure CSS Trigger) -->
+                            <label for="hidden-file-upload" class="btn btn-outline-light rounded-pill px-4 py-3 fw-bold shadow d-inline-flex align-items-center gap-2 file-upload-label">
+                                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg>
+                                Attach File
+                            </label>
+                            <input type="file" id="hidden-file-upload">
+                        </div>
 
                         <div class="d-flex justify-content-center gap-3 mt-5">
                             <a href="#" class="btn btn-outline-light rounded-circle p-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
