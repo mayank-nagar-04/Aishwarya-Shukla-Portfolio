@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aishwarya | Portfolio</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        /* --- Custom Styling & Theme Overrides --- */
+        :root {
+            --primary-color: #9333ea; /* Purple-600 */
+            --secondary-color: #db2777; /* Pink-600 */
+            --light-bg: #f9fafb;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--light-bg);
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        /* Gradient Text */
+        .brand-gradient {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+
+        /* Buttons */
+        .btn-purple {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50px;
+            padding: 10px 30px;
+            border: 2px solid var(--primary-color);
+            transition: all 0.3s;
+        }
+        .btn-purple:hover {
+            background-color: #7e22ce;
+            border-color: #7e22ce;
+            color: white;
+            box-shadow: 0 10px 15px -3px rgba(147, 51, 234, 0.3);
+        }
+        .btn-outline-purple {
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            border-radius: 50px;
+            padding: 10px 30px;
+            background: transparent;
+            transition: all 0.3s;
+        }
+        .btn-outline-purple:hover {
+            background-color: #f3e8ff;
+            color: var(--primary-color);
+        }
+
+        /* 1. Typing Animation (Pure CSS) */
+        .typing-text::after {
+            content: "Student";
+            animation: changeText 8s infinite linear;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        @keyframes changeText {
+            0% { content: "Student"; }
+            20% { content: "Student"; }
+            25% { content: "Coder"; }
+            45% { content: "Coder"; }
+            50% { content: "Designer"; }
+            70% { content: "Designer"; }
+            75% { content: "Problem Solver"; }
+            95% { content: "Problem Solver"; }
+            100% { content: "Student"; }
+        }
+        .cursor-blink {
+            display: inline-block;
+            width: 3px;
+            height: 1.5rem;
+            background-color: var(--primary-color);
+            animation: blink 1s infinite;
+            vertical-align: middle;
+            margin-left: 5px;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* 2. Responsive Blob Animation */
+        .blob-container {
+            position: relative;
+            width: 100%;
+            max-width: 350px; /* Limit width on desktop */
+            aspect-ratio: 1/1; /* Keep it square */
+            margin: 0 auto;
+        }
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.7;
+            animation: blob-bounce 7s infinite;
+            width: 85%; /* Relative sizing */
+            height: 85%;
+        }
+        /* Adjusted positioning to percentages for responsiveness */
+        .blob-purple { background-color: #e9d5ff; top: 0; left: 0; }
+        .blob-pink { background-color: #fbcfe8; top: 0; right: -5%; animation-delay: 2s; }
+        .blob-yellow { background-color: #fef08a; bottom: -5%; left: 15%; animation-delay: 4s; }
+        
+        @keyframes blob-bounce {
+            0% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(10%, -15%) scale(1.1); }
+            66% { transform: translate(-5%, 5%) scale(0.9); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+
+        .hero-img-box {
+            position: relative;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid white;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            z-index: 10;
+            background: white;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 3. Mobile Menu (Pure CSS Checkbox Hack for Bootstrap Nav) */
+        #nav-toggle { display: none; }
+        
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                display: none; /* Hidden by default */
+                background: white;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+                padding: 1rem;
+                text-align: center;
+                z-index: 1000; /* Ensure it floats above content */
+            }
+            /* Show menu when checkbox is checked */
+            #nav-toggle:checked ~ .navbar-collapse {
+                display: block;
+            }
+        }
+
+        /* Section Styling & Mobile Adjustments */
+        section { padding: 80px 0; }
+        
+        /* Mobile specific adjustments */
+        @media (max-width: 768px) {
+            section { padding: 50px 0; }
+            .hero-title { font-size: 2.5rem !important; } /* Smaller font on mobile */
+            .blob-container { max-width: 280px; } /* Smaller blobs on mobile */
+        }
+
+        .section-title { font-weight: 800; color: #111827; margin-top: 0.5rem; }
+        .section-subtitle { color: var(--primary-color); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; font-size: 0.875rem; }
+        .title-bar { width: 80px; height: 4px; background-color: var(--primary-color); margin: 1rem auto; border-radius: 2px; }
+
+        /* Card Hover Effects */
+        .hover-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            border-radius: 1rem;
+        }
+        .hover-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Timeline (Education) */
+        .timeline-item {
+            border-left: 3px solid #e9d5ff;
+            padding-left: 2rem;
+            position: relative;
+            padding-bottom: 3rem;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -14px;
+            top: 0;
+            width: 25px;
+            height: 25px;
+            background-color: var(--primary-color);
+            border: 4px solid white;
+            border-radius: 50%;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        /* Project Cards */
+        .project-card {
+            position: relative;
+            border-radius: 1rem;
+            overflow: hidden;
+            background-color: #111827;
+            aspect-ratio: 4/3;
+            display: block; /* For anchor tag */
+            text-decoration: none;
+        }
+        .project-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding: 1.5rem;
+            color: white;
+            z-index: 20;
+            transform: translateY(10px);
+            transition: transform 0.3s;
+        }
+        .project-card:hover .project-content { transform: translateY(0); }
+        .project-bg-icon {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.5s;
+        }
+        .project-card:hover .project-bg-icon { transform: scale(1.1); }
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            z-index: 10;
+        }
+
+        /* --- 4. CSS-Only Project Modal Template --- */
+        .modal-window {
+            position: fixed;
+            background-color: rgba(0, 0, 0, 0.85);
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .modal-window:target {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-inner {
+            background: white;
+            width: 100%;
+            max-width: 800px;
+            position: relative;
+            border-radius: 1rem;
+            padding: 2rem;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: translateY(-20px);
+            transition: transform 0.3s;
+        }
+        .modal-window:target .modal-inner {
+            transform: translateY(0);
+        }
+        .modal-close {
+            position: absolute;
+            right: 1.5rem;
+            top: 1rem;
+            font-size: 2rem;
+            color: #aaa;
+            text-decoration: none;
+            line-height: 1;
+        }
+        .modal-close:hover { color: #000; }
+        
+        /* Modal Content Styling */
+        .modal-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .tag-hobby { background-color: #fef9c3; color: #b45309; }
+        .tag-design { background-color: #fce7f3; color: #be185d; }
+        .tag-code { background-color: #e0f2fe; color: #0369a1; }
+
+        /* Utilities */
+        .bg-gradient-contact { background: linear-gradient(135deg, #a855f7, #ec4899); }
+        .icon-box {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation (Bootstrap Structure + Checkbox Hack for No-JS Toggle) -->
+    <nav class="navbar navbar-expand-lg fixed-top bg-white shadow-sm py-3">
+        <div class="container">
+            <a class="navbar-brand brand-gradient fs-3" href="#home">Aishwarya.</a>
+            
+            <!-- Hidden Checkbox for Mobile Menu Logic -->
+            <input type="checkbox" id="nav-toggle">
+            
+            <!-- Custom Label acting as Toggler Button -->
+            <label for="nav-toggle" class="navbar-toggler border-0 p-0" style="cursor: pointer;">
+                <span class="navbar-toggler-icon"></span>
+            </label>
+
+            <div class="navbar-collapse collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center gap-3">
+                    <li class="nav-item"><a class="nav-link fw-bold text-secondary" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold text-secondary" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold text-secondary" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold text-secondary" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold text-secondary" href="#education">Education</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold text-secondary" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="d-flex align-items-center min-vh-100 pt-5">
+        <div class="container">
+            <div class="row align-items-center flex-column-reverse flex-md-row">
+                <!-- Text Content -->
+                <div class="col-md-6 text-center text-md-start mt-5 mt-md-0">
+                    <h2 class="fs-4 text-secondary mb-2">Hello, I'm</h2>
+                    <h1 class="display-3 fw-bold text-dark mb-3 hero-title">Aishwarya</h1>
+                    <div class="fs-3 fw-semibold mb-3">
+                        I am a <span class="typing-text"></span><span class="cursor-blink"></span>
+                    </div>
+                    <p class="lead text-secondary mb-4">
+                        I'm a first-year BCA student living in Ajmer. I love exploring how technology works, solving puzzles, and creating things—whether it's a new computer program or a new recipe in the kitchen.
+                    </p>
+                    <div class="d-flex gap-3 justify-content-center justify-content-md-start">
+                        <a href="#contact" class="btn btn-purple">Hire Me</a>
+                        <a href="#" class="btn btn-outline-purple d-flex align-items-center gap-2">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            Resume
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Image Content with Responsive Blobs -->
+                <div class="col-md-6 position-relative d-flex justify-content-center">
+                    <div class="blob-container">
+                        <div class="blob blob-purple"></div>
+                        <div class="blob blob-pink"></div>
+                        <div class="blob blob-yellow"></div>
+                        <div class="hero-img-box">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Aishwarya&backgroundColor=ffdfbf" alt="Aishwarya" class="img-fluid w-100 h-100 object-fit-cover">
+                        </div>
+                    </div>
+                    
+                    <!-- Floating Badge -->
+                    <div class="position-absolute bg-white p-2 rounded shadow-sm d-flex align-items-center gap-2" style="top: 20%; left: 0; animation: bounce 2s infinite;">
+                        <svg class="text-primary" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        <span class="fw-bold small">Coder</span>
+                    </div>
+                    <div class="position-absolute bg-white p-2 rounded shadow-sm d-flex align-items-center gap-2" style="bottom: 10%; right: 0; animation: bounce 3s infinite;">
+                        <svg class="text-danger" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>
+                        <span class="fw-bold small">Designer</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="bg-white">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="section-subtitle">Introduction</span>
+                <h2 class="section-title">About Me</h2>
+                <div class="title-bar"></div>
+            </div>
+
+            <div class="row g-4 mb-5">
+                <!-- Card 1 -->
+                <div class="col-6 col-md-3">
+                    <div class="card hover-card h-100 bg-light text-center p-4">
+                        <div class="icon-box bg-white text-primary mx-auto shadow-sm">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                        </div>
+                        <h5 class="fw-bold">Analytical</h5>
+                        <small class="text-muted">Problem Solving</small>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="col-6 col-md-3">
+                    <div class="card hover-card h-100 bg-light text-center p-4">
+                        <div class="icon-box bg-white text-primary mx-auto shadow-sm">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+                        </div>
+                        <h5 class="fw-bold">Creative</h5>
+                        <small class="text-muted">Aesthetics</small>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="col-6 col-md-3">
+                    <div class="card hover-card h-100 bg-light text-center p-4">
+                        <div class="icon-box bg-white text-primary mx-auto shadow-sm">
+                             <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h5 class="fw-bold">Tech Savvy</h5>
+                        <small class="text-muted">Coding</small>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="col-6 col-md-3">
+                    <div class="card hover-card h-100 bg-light text-center p-4">
+                        <div class="icon-box bg-white text-primary mx-auto shadow-sm">
+                             <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                        </div>
+                        <h5 class="fw-bold">Detail</h5>
+                        <small class="text-muted">Perfectionist</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card border-0 bg-light rounded-4 p-4 p-md-5">
+                <div class="row align-items-center">
+                    <div class="col-md-6 mb-4 mb-md-0">
+                        <h3 class="fw-bold mb-4">"I believe that with enough curiosity, you can learn anything."</h3>
+                        <p class="text-secondary mb-4">
+                            I'm currently studying at <strong class="text-primary">Star Infotech College</strong>. My journey in tech is just beginning, but I'm really passionate about it. I finished my schooling right here in Ajmer, and now I'm diving deep into the world of computers.
+                        </p>
+                        <div class="d-flex flex-column flex-sm-row gap-3">
+                            <div class="d-flex align-items-center gap-2 text-secondary">
+                                <svg class="text-primary" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                Ajmer, Rajasthan
+                            </div>
+                            <div class="d-flex align-items-center gap-2 text-secondary">
+                                <svg class="text-primary" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                aishwaryaharris16@icloud.com
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row g-2">
+                             <div class="col-6"><div style="background:#e9d5ff; height:120px; border-radius:1rem;"></div></div>
+                             <div class="col-6"><div style="background:#fbcfe8; height:120px; border-radius:1rem; margin-top:2rem;"></div></div>
+                             <div class="col-6"><div style="background:#fef08a; height:120px; border-radius:1rem; margin-top:-2rem;"></div></div>
+                             <div class="col-6"><div style="background:#bae6fd; height:120px; border-radius:1rem;"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="section-subtitle">My Toolbox</span>
+                <h2 class="section-title">Skills & Abilities</h2>
+                <div class="title-bar"></div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100 p-4" style="border-bottom: 4px solid var(--primary-color) !important;">
+                        <div class="icon-box bg-light text-primary">
+                            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                        </div>
+                        <h4 class="fw-bold">Web Basics</h4>
+                        <p class="text-secondary">HTML5, CSS3 & Bootstrap</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100 p-4" style="border-bottom: 4px solid #db2777 !important;">
+                        <div class="icon-box bg-light" style="color: #db2777;">
+                             <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h4 class="fw-bold">Programming</h4>
+                        <p class="text-secondary">C++ & Python Fundamentals</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100 p-4" style="border-bottom: 4px solid #3b82f6 !important;">
+                        <div class="icon-box bg-light" style="color: #3b82f6;">
+                            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                        </div>
+                        <h4 class="fw-bold">Computer Skills</h4>
+                        <p class="text-secondary">MS Office & System Logic</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="bg-white">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="section-subtitle">What I Do</span>
+                <h2 class="section-title">Interests & Projects</h2>
+                <div class="title-bar"></div>
+            </div>
+
+            <div class="row g-4">
+                <!-- Project 1 Card -->
+                <div class="col-md-4">
+                    <a href="#project-1" class="project-card shadow">
+                        <div class="project-overlay"></div>
+                        <div class="project-bg-icon">
+                            <svg class="text-warning opacity-50" width="80" height="80" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                        </div>
+                        <div class="project-content">
+                            <span class="text-warning fw-bold small text-uppercase mb-2 d-block">Hobby</span>
+                            <h3 class="fw-bold mb-2">Culinary Creativity</h3>
+                            <p class="small text-white-50">Click for details.</p>
+                        </div>
+                    </a>
+                </div>
+                <!-- Project 2 Card -->
+                <div class="col-md-4">
+                    <a href="#project-2" class="project-card shadow">
+                        <div class="project-overlay"></div>
+                        <div class="project-bg-icon">
+                            <svg class="text-danger opacity-50" width="80" height="80" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                            </svg>
+                        </div>
+                        <div class="project-content">
+                            <span class="text-danger fw-bold small text-uppercase mb-2 d-block">Design</span>
+                            <h3 class="fw-bold mb-2">Web Design</h3>
+                            <p class="small text-white-50">Click for details.</p>
+                        </div>
+                    </a>
+                </div>
+                <!-- Project 3 Card -->
+                <div class="col-md-4">
+                    <a href="#project-3" class="project-card shadow">
+                        <div class="project-overlay"></div>
+                        <div class="project-bg-icon">
+                             <svg class="text-info opacity-50" width="80" height="80" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <div class="project-content">
+                            <span class="text-info fw-bold small text-uppercase mb-2 d-block">Code</span>
+                            <h3 class="fw-bold mb-2">Grade Calculator</h3>
+                            <p class="small text-white-50">Click for details.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="section-subtitle">Timeline</span>
+                <h2 class="section-title">My Education</h2>
+                <div class="title-bar"></div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="ps-3 ps-md-4">
+                        <!-- Item 1 -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="card border-0 shadow-sm p-4">
+                                <span class="badge bg-purple-subtle text-primary border border-primary rounded-pill mb-2 px-3 py-2" style="background-color: #f3e8ff; border-color: #e9d5ff !important; width: fit-content;">2025 - 2028</span>
+                                <h4 class="fw-bold mt-2">BCA</h4>
+                                <h5 class="text-secondary fw-normal">Star Infotech College, Ajmer</h5>
+                                <p class="text-muted small mb-0 mt-2">1st Semester.</p>
+                            </div>
+                        </div>
+                        <!-- Item 2 -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="card border-0 shadow-sm p-4">
+                                <span class="badge bg-purple-subtle text-primary border border-primary rounded-pill mb-2 px-3 py-2" style="background-color: #f3e8ff; border-color: #e9d5ff !important; width: fit-content;">2023</span>
+                                <h4 class="fw-bold mt-2">12th Grade</h4>
+                                <h5 class="text-secondary fw-normal">NIOS Open Schooling</h5>
+                            </div>
+                        </div>
+                        <!-- Item 3 -->
+                        <div class="timeline-item border-0 pb-0">
+                            <div class="timeline-dot"></div>
+                            <div class="card border-0 shadow-sm p-4">
+                                <span class="badge bg-purple-subtle text-primary border border-primary rounded-pill mb-2 px-3 py-2" style="background-color: #f3e8ff; border-color: #e9d5ff !important; width: fit-content;">2021</span>
+                                <h4 class="fw-bold mt-2">10th Grade</h4>
+                                <h5 class="text-secondary fw-normal">All Saint Sr. Sec. School</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-white">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="section-subtitle">Let's Connect</span>
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="text-secondary lead mt-3">I'm always happy to chat!</p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="bg-gradient-contact text-white rounded-5 p-5 text-center shadow-lg">
+                        <h3 class="fw-bold mb-4">Ready to start a project?</h3>
+                        <p class="mb-5 opacity-75">Feel free to reach out for collaborations or just a friendly hello.</p>
+                        
+                        <a href="mailto:aishwaryaharris16@icloud.com" class="btn btn-light rounded-pill px-5 py-3 fw-bold text-primary shadow d-inline-flex align-items-center gap-2">
+                             <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                             Send Email
+                        </a>
+
+                        <div class="d-flex justify-content-center gap-3 mt-5">
+                            <a href="#" class="btn btn-outline-light rounded-circle p-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                            </a>
+                            <a href="#" class="btn btn-outline-light rounded-circle p-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-light py-4 border-top">
+        <div class="container text-center">
+            <p class="text-secondary mb-0 small">© 2025 Aishwarya. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- --- CSS-Only Project Modals (Templates) --- -->
+    
+    <!-- Modal 1: Culinary -->
+    <div id="project-1" class="modal-window">
+        <div class="modal-inner">
+            <a href="#projects" class="modal-close">&times;</a>
+            <div class="row">
+                <div class="col-md-5">
+                    <!-- Project Image Placeholder -->
+                    <div style="background-color: #fef9c3; height: 250px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                        <svg class="text-warning opacity-50" width="80" height="80" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <span class="modal-tag tag-hobby">Hobby</span>
+                    <h2 class="fw-bold mb-3">Culinary Creativity</h2>
+                    <p class="text-secondary">
+                        A collection of my culinary experiments and recipes. This project started as a simple hobby and grew into a passion for exploring flavors from different cultures.
+                    </p>
+                    <ul class="text-secondary small mb-4">
+                        <li>Recipe development and testing</li>
+                        <li>Food photography and styling</li>
+                        <li>Blog writing and content creation</li>
+                    </ul>
+                    <a href="#" class="btn btn-purple btn-sm">View Blog</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: Web Design -->
+    <div id="project-2" class="modal-window">
+        <div class="modal-inner">
+            <a href="#projects" class="modal-close">&times;</a>
+            <div class="row">
+                <div class="col-md-5">
+                    <div style="background-color: #fce7f3; height: 250px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                        <svg class="text-danger opacity-50" width="80" height="80" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <span class="modal-tag tag-design">Design</span>
+                    <h2 class="fw-bold mb-3">Web Design Portfolio</h2>
+                    <p class="text-secondary">
+                        A showcase of various web layouts and UI/UX designs created during my BCA studies. Focusing on responsive design and user accessibility.
+                    </p>
+                    <ul class="text-secondary small mb-4">
+                        <li>Figma & Adobe XD Prototyping</li>
+                        <li>HTML5/CSS3 Implementation</li>
+                        <li>Mobile-first approach</li>
+                    </ul>
+                    <a href="#" class="btn btn-purple btn-sm">View Designs</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3: Code -->
+    <div id="project-3" class="modal-window">
+        <div class="modal-inner">
+            <a href="#projects" class="modal-close">&times;</a>
+            <div class="row">
+                <div class="col-md-5">
+                    <div style="background-color: #e0f2fe; height: 250px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                         <svg class="text-info opacity-50" width="80" height="80" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <span class="modal-tag tag-code">Code</span>
+                    <h2 class="fw-bold mb-3">Grade Calculator</h2>
+                    <p class="text-secondary">
+                        A robust C++ console application designed to help students calculate their CGPA and SGPA. It includes features for credit weighting and grade point conversion.
+                    </p>
+                    <ul class="text-secondary small mb-4">
+                        <li>C++ Object Oriented Programming</li>
+                        <li>File I/O for saving results</li>
+                        <li>Error handling and validation</li>
+                    </ul>
+                    <a href="#" class="btn btn-purple btn-sm">View Code</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
